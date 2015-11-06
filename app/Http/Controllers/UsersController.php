@@ -7,12 +7,12 @@ namespace App\Http\Controllers;
 use App\Transformers\CheckinTransformer;
 use App\Transformers\UserTransformer;
 
-class UserController extends ApiController {
+class UsersController extends ApiController {
     public function index()
     {
         $users = User::take(10)->with('checkins', 'checkins.place')->get();
 
-        return $this->respondWithCollection($users, new UserTransformer);
+        return $this->respondWithCORS($users, new UserTransformer);
     }
 
     public function show($userId)
@@ -34,6 +34,6 @@ class UserController extends ApiController {
             return $this->errorNotFound('User not found');
         }
 
-        return $this->respondWithCollection($user->checkins, new CheckinTransformer);
+        return $this->respondWithCORS($user->checkins, new CheckinTransformer);
     }
 }
