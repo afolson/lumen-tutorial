@@ -13,6 +13,10 @@ If you're coming from Laravel, here are some differences you'll notice:
 
 ## Getting Started
 
+If you want to install Lumen from scratch and follow along, follow the instructions here: http://lumen.laravel.com/docs/installation
+
+When you're ready to create a new project, issue the following command `lumen new lumen-api`
+
 If you're using Homestead, this should be no different for you than a Laravel app.
 
 If you're developing locally, you should know that the `artisan` command is missing the `serve` command. I recommend that you use PHP's built in web server: `php -S 127.0.0.1:8080 -t public/`
