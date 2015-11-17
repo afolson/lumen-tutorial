@@ -85,4 +85,7 @@ class PlacesController extends ApiController {
         return $this->respond($data);
     }
 
+    // What if we wanted to show a list of comments that users had left?
+    // HINT: You will need to add migrations, edit models, and edit transformers
+
 }

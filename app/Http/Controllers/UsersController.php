@@ -6,34 +6,36 @@ namespace App\Http\Controllers;
 
 use App\Transformers\CheckinTransformer;
 use App\Transformers\UserTransformer;
+use League\Fractal\Manager;
+use League\Fractal\Resource\Collection;
+use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
+use App\User;
 
 class UsersController extends ApiController {
+
+    // "user" is protected in some places, so we'll use "luser"
+    protected $luser;
+
+    function __construct(User $luser)
+    {
+        $this->luser = $luser;
+    }
+    
     public function index()
     {
-        $users = User::take(10)->with('checkins', 'checkins.place')->get();
-
-        return $this->respondWithCORS($users, new UserTransformer);
+        // Do stuff here!
     }
 
-    public function show($userId)
+    public function show()
     {
-        $user = User::find($userId);
-
-        if (! $user) {
-            return $this->errorNotFound('User not found');
-        }
-
-        return $this->respondWithItem($user, new UserTransformer);
+        // AND HERE!
     }
 
-    public function getCheckins($userId)
+    public function getCheckins()
     {
-        $user = User::find($userId);
-
-        if (! $user) {
-            return $this->errorNotFound('User not found');
-        }
-
-        return $this->respondWithCORS($user->checkins, new CheckinTransformer);
+        // By now I hope you know what to do
     }
+
+    // What if we wanted to show a list of comments a user had left?
 }
